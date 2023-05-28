@@ -1,0 +1,112 @@
+//---------------------------------------------------------------------------
+
+#pragma hdrstop
+
+#include "UCinta.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+Cinta::Cinta(){
+		char simbolos[max];
+		cabezal=-1;
+		valornulo='0';
+		for(int i=0; i<max; i++)
+		{
+			simbolos[i]=valornulo;
+		}
+		cant=0;
+}
+Cinta::Cinta(char ValornuloDeEntrada){
+	valornulo=ValornuloDeEntrada;
+	char simbolos[max];
+	cabezal=-1;
+	cant=0;;
+	for(int i=0; i<max; i++)
+	{
+		simbolos[i]=valornulo;
+	}
+}
+void Cinta::CargarvalCinta(TStringGrid *MatrizDeEstados,char valores){
+		cant++;
+		MatrizDeEstados->Cells[cant][0] = valores;
+}
+void Cinta::crear(TStringGrid *M,String entrada,char valornuloo){
+	int i; valornulo=valornuloo;
+
+	for(i=0; i<entrada.Length(); i++){
+		simbolos[i]=entrada[i+1];
+	}
+	cabezal=0;
+	int NN=3-cabezal;
+	int NE=0;
+	if(NN>0){
+		for(i=0; i<NN; i++ ){
+			M->Cells[i][0]=valornulo;
+		}
+		NE=NN;
+	}
+	int j=0; i=NE;
+	while(j<entrada.Length()){
+		M->Cells[i][0]=simbolos[j];
+		i++;
+		j++;
+	}
+	while(i<13){
+		M->Cells[i][0]=valornulo;
+		i++;
+
+	}
+
+}
+void Cinta::moverDerecha(TStringGrid *M){
+	cabezal=cabezal+1;
+	imprimir(M);
+}
+void Cinta::moverIzquierda(TStringGrid *M){
+	cabezal=cabezal-1;
+	imprimir(M);
+}
+void Cinta::imprimir(TStringGrid *M){
+	 int NN=3-cabezal;
+	 int NE=0;
+	 int i;
+	 if(NN>0){
+		for(i=0;i<NN;i++){
+			M->Cells[i][0]=valornulo;
+		}
+	 }else{
+	   NE=cabezal-3;
+	   NN=0;
+		for(i=0;i<3;i++){
+			if(simbolos[NE]!=NULL){
+				M->Cells[i][0]=simbolos[NE];
+
+			}else{
+				M->Cells[i][0]=valornulo;
+			}
+			NN++;
+			NE++;
+		}
+
+	 }
+	 while(NN<13){
+	   if(simbolos[NE]!=NULL){
+		M->Cells[NN][0]=simbolos[NE];
+
+	   }else{
+		 ///----------------
+	   }
+	 }
+
+}
+int  Cinta::obtenerCabezal(){
+	 return cabezal;
+}
+char* Cinta::obtenerSimbolo(){
+	 return simbolos;
+}
+void Cinta::setcabezal(){
+
+}
+char Cinta::obtenerValorNulo(){
+	return valornulo;
+}

@@ -1,0 +1,27 @@
+//---------------------------------------------------------------------------
+
+#ifndef UCintaH
+#define UCintaH
+#include<Vcl.Grids.hpp>
+//---------------------------------------------------------------------------
+using namespace std;
+const int max=10;
+  class Cinta{
+	private:
+		char simbolos[max]; //100
+		int cabezal;
+		char valornulo;
+	public:
+		Cinta();
+		void crear(TStringGrid *M,String entrada,char valornulo);
+		void moverDerecha(TStringGrid *M);
+		void moverIzquierda(TStringGrid *M);
+		void imprimir(TStringGrid *M);
+		int  obtenerCabezal();
+		char* obtenerSimbolo();
+		void insertar();
+		char obtenerValorNulo();
+
+
+  };
+  #endif

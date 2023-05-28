@@ -1,0 +1,316 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+
+#include "UFPresentacion.h"
+#include "UMatrizV.h"
+#include "UCinta.h"
+#include "Unit1.h"
+
+#include <string>
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+TForm1 *Form1;
+//Declaracion Globales
+	MatrizV *M = new MatrizV();
+	Cinta *C = new  Cinta();
+	Estado *E=new Estado();
+	int cant=0;
+	int i=0;
+	int j=0;
+	int pos=1;
+	int nc=1;
+	int nf=1;
+	//MatrizDeEstados->RowCount=nc;
+   // MatrizDeEstados->ColCount=nf;
+	Estado Est[max];
+//	M->definir(5,5,'$');
+//	M->poner(5,5,'$');
+
+
+//Mostrar Sparce;
+
+void MostrarSparce2(TStringGrid *MatrizDeEstados){
+   for(int i=0;i<=2;i++){
+		for(int j=0;j<=2;j++){
+			MatrizDeEstados->Cells[j][i] = "hola" ;
+		}
+   }
+}
+
+void masSimbolos(TStringGrid *MatrizDeEstados,int numf){
+	nf=numf++;
+	MatrizDeEstados->ColCount=nf;
+}
+
+/*
+	for(int i=0;i<nf;i++){
+		for(int j=0;j<nc;j++){
+			MatrizDeEstados->Cells[j][i] = "hola" ;
+		}
+	}
+*/
+//---------------------------------------------------------------------------
+__fastcall TForm1::TForm1(TComponent* Owner)
+	: TForm(Owner)
+{
+	//MatrizV* m = new MatrizV();
+	//---------------------StringGrid1->Visible=false;
+	   //
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::Button1Click(TObject *Sender)
+{
+	//String valorS = (InputBox("Insertar","Ingrese un valor:","$"));
+	//	char valor=valorS[1];
+	String valorS=TxtEntrada->Text;
+	char valor=TxtValorNulo->Text[1];
+
+	C->crear(CintaV,valorS,valor);
+	//M->Imprimir(MatrizDeEstados);
+
+
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm1::Button2Click(TObject *Sender)
+{
+
+	int nf = StrToInt(InputBox("Dimensionar","Nro de Filas:","5"));
+	int nc = StrToInt(InputBox("Dimensionar","Nro de Columnas:","5"));
+	String ElementoRep=InputBox("Elemento Repetido","Elemento:","$");
+	char valor_repetido=ElementoRep[1];
+
+	//---------Definimos nf y nc al TStringGrid1
+	MatrizDeEstados->ColCount=nf;
+	MatrizDeEstados->RowCount=nc;
+	M->dimensionar(nf, nc);
+	M->definir_valor_repetido(valor_repetido);
+	//M->Imprimir(MatrizDeEstados);
+
+	//string prueba=M->to_str();
+	//ShowMessage(prueba);
+	//MostrarSparce(M,StringGrid1);
+	//StringGrid1->Visible=true;
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm1::Button3Click(TObject *Sender)
+{
+	CintaV->Canvas->Brush->Color=clYellow;
+   //	CintaV->Canvas->FillRect(Rect);
+	//Canvas.FillRect(Rect);
+
+   C->imprimir(CintaV);
+
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button6Click(TObject *Sender)
+{
+	C->moverDerecha(CintaV);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button5Click(TObject *Sender)
+{
+		C->moverIzquierda(CintaV);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button4Click(TObject *Sender)
+{   /*
+	int Estadoi=StrToInt(Edit3->Text); //0
+	char Mirar=Edit4->Text[1];    //$
+	char Conventir=Edit5->Text[1]; //X
+	char Movimiento=Edit6->Text[1]; //H finaliza
+	int apuntador=StrToInt(Edit7->Text); //0
+	*/
+	int Estadoi=0; char Mirar='$';  char Conventir='X';
+	char Movimiento='H'; int apuntador=0;
+	Est[Estadoi].setInstruccion(Mirar,Conventir,Movimiento,apuntador);
+	Est[Estadoi].setnumero(Estadoi);
+
+	//-------------------------------------
+	String S="Q"+Simbolomas->Text+" "+Mirar+"->"+Conventir+","+Movimiento;
+	M->poner(i, j, S);
+	M->Imprimir(MatrizDeEstados);
+	i++;
+	if(i>4){
+		i=0;
+		j++;
+	}
+
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button7Click(TObject *Sender)
+{
+  int i=0;
+  int cabezal=C->obtenerCabezal();
+  char* simbolo=C->obtenerSimbolo();
+  char 	valornuloo=C->obtenerValorNulo();
+  while(i!=-1){
+	Est[i].ejecutar(cabezal,simbolo,i,valornuloo);
+	M->Imprimir(MatrizDeEstados);
+  }
+
+
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm1::Button8Click(TObject *Sender)
+{
+	char Simbolo=Simbolomas->Text[1];
+		if (!(Simbolomas->Text.IsEmpty())){
+			Label9->Caption="No Esta vacio";
+			//j++;
+			//MatrizDeEstados->Cells[j][0] = Simbolo;
+			C->CargarvalSimbolos(MatrizDeEstados,Simbolo);
+			ComboBox2->Items->Clear();
+			ComboBox4->Items->Clear();
+			C->LlenarUnCombobox(ComboBox2);
+			C->LlenarUnCombobox(ComboBox4);
+			//String s(&Simbolo, 1);
+			//ComboBox2->Items->Add(s);
+			//ComboBox4->Items->Add(s);
+
+
+			nf++;
+			MatrizDeEstados->ColCount=nf;
+
+		}else{
+			Label9->Caption="Esta vacio";
+
+		}
+
+
+
+
+
+
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::FormCreate(TObject *Sender)
+{
+	MatrizDeEstados->RowCount=nc;
+	MatrizDeEstados->ColCount=nf;
+	ComboBox5->Items->Add("D");
+	ComboBox5->Items->Add("I");
+
+}
+//---------------------------------------------------------------------------
+
+     //Estadomas++
+void __fastcall TForm1::Button10Click(TObject *Sender)
+{
+		char EstadomasE=Estadomas->Text[1];
+		if (!(Estadomas->Text.IsEmpty())){
+			Label9->Caption="No Esta vacio";
+			i++;
+			//MatrizDeEstados->Cells[0][i] = EstadomasE;
+			E->CargarvalEstado(MatrizDeEstados,EstadomasE);
+			ComboBox1->Items->Clear();
+			ComboBox3->Items->Clear();
+			E->LlenarUnCombobox(ComboBox1);
+			E->LlenarUnCombobox(ComboBox3);
+			//String s(&EstadomasE, 1);
+			//ComboBox1->Items->Add(s);
+			//ComboBox3->Items->Add(s);
+			nc++;
+			MatrizDeEstados->RowCount=nc;
+
+		}else{
+			Label9->Caption="Esta vacio";
+
+		}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button9Click(TObject *Sender)
+{
+	char Simbolo=Simbolomenos->Text[1];
+		if (!(Simbolomenos->Text.IsEmpty())){
+			Label9->Caption="No Esta vacio";
+
+			C->EliminarvalSimbolos(MatrizDeEstados,Simbolo);
+			//   int index = comboBox1.FindString(textBox2.Text);
+			ComboBox2->Items->Clear();
+			ComboBox4->Items->Clear();
+			C->LlenarUnCombobox(ComboBox2);
+			C->LlenarUnCombobox(ComboBox4);
+			//String s(&Simbolo, 1);
+
+			/*int C2=ComboBox2->FindString(s);
+			int C4=ComboBox4->FindString(s);
+			ComboBox2->Items->Delete(C2);
+			ComboBox4->Items->Delete(C4);*/
+			nc--;
+			MatrizDeEstados->RowCount=nc;
+
+		}else{
+			Label9->Caption="Esta vacio";
+
+		}
+
+}
+//---------------------------------------------------------------------------
+    //Estadomas--
+void __fastcall TForm1::Button11Click(TObject *Sender)
+{
+	char EstadomasE=Estadomenos->Text[1];
+		if (!(Estadomenos->Text.IsEmpty())){
+			Label9->Caption="No Esta vacio";
+
+			E->EliminarvalEstado(MatrizDeEstados,EstadomasE);
+			ComboBox1->Items->Clear();
+			ComboBox3->Items->Clear();
+			E->LlenarUnCombobox(ComboBox1);
+			E->LlenarUnCombobox(ComboBox3);
+			//String s(&EstadomasE, 1);
+			//String s(&Simbolo, 1);
+
+			/*int C2=ComboBox2->FindString(s);
+			int C4=ComboBox4->FindString(s);
+			ComboBox2->Items->Delete(C2);
+			ComboBox4->Items->Delete(C4);*/
+			nf--;
+			MatrizDeEstados->RowCount=nf;
+
+		}else{
+			Label9->Caption="Esta vacio";
+
+		}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button12Click(TObject *Sender)
+{
+
+	char Estadoi='0'; char Mirar='$';  char Conventir='X';
+	char Movimiento='H'; int apuntador=0;
+	//-------------------------------------------------------
+	//String gg = ComboBox1->Text;
+	//ShowMessage("El valor seleccionado es: " +gg );
+
+	//Est[Estadoi].setInstruccion(Mirar,Conventir,Movimiento,apuntador);
+	//Est[Estadoi].setnumero(Estadoi);
+
+	//-------------------------------------
+	String S="Q"+Simbolomas->Text+" "+Mirar+"->"+Conventir+","+Movimiento;
+
+	M->poner(i, j, S);
+	Label9->Caption=S;
+	M->Imprimir(MatrizDeEstados);
+	i++;
+	if(i>4){
+		i=0;
+		j++;
+	}
+}
+//---------------------------------------------------------------------------
+

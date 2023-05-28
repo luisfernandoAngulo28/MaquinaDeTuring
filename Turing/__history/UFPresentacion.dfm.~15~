@@ -1,0 +1,375 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 575
+  ClientWidth = 918
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel
+    Left = 304
+    Top = 8
+    Width = 77
+    Height = 29
+    Caption = 'Turing'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -24
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label2: TLabel
+    Left = 247
+    Top = 179
+    Width = 52
+    Height = 13
+    Caption = 'Estado Q+'
+  end
+  object Label3: TLabel
+    Left = 24
+    Top = 179
+    Width = 35
+    Height = 13
+    Caption = 'sigma+'
+  end
+  object Label4: TLabel
+    Left = 128
+    Top = 179
+    Width = 32
+    Height = 13
+    Caption = 'Sigma-'
+  end
+  object Label5: TLabel
+    Left = 544
+    Top = 365
+    Width = 31
+    Height = 13
+    Caption = 'Label5'
+  end
+  object Label6: TLabel
+    Left = 363
+    Top = 179
+    Width = 48
+    Height = 13
+    Caption = 'Estado Q-'
+  end
+  object Label7: TLabel
+    Left = 544
+    Top = 269
+    Width = 64
+    Height = 19
+    Caption = 'Entrada'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label8: TLabel
+    Left = 696
+    Top = 269
+    Width = 85
+    Height = 19
+    Caption = 'Valor Nulo'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
+  object Label77: TLabel
+    Left = 544
+    Top = 424
+    Width = 37
+    Height = 13
+    Caption = 'Label77'
+  end
+  object Label9: TLabel
+    Left = 53
+    Top = 448
+    Width = 31
+    Height = 13
+    Caption = 'Label9'
+  end
+  object MatrizDeEstados: TStringGrid
+    Left = 53
+    Top = 228
+    Width = 417
+    Height = 193
+    ColCount = 1
+    DefaultColWidth = 50
+    DefaultRowHeight = 25
+    FixedCols = 0
+    RowCount = 1
+    FixedRows = 0
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 0
+  end
+  object Button1: TButton
+    Left = 24
+    Top = 8
+    Width = 121
+    Height = 25
+    Caption = 'Gargar'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 1
+    OnClick = Button1Click
+  end
+  object Button2: TButton
+    Left = 24
+    Top = 542
+    Width = 121
+    Height = 25
+    Caption = 'Dimensionar'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 2
+    OnClick = Button2Click
+  end
+  object TxtEntrada: TEdit
+    Left = 544
+    Top = 304
+    Width = 121
+    Height = 21
+    TabOrder = 3
+  end
+  object TxtValorNulo: TEdit
+    Left = 696
+    Top = 304
+    Width = 121
+    Height = 21
+    TabOrder = 4
+  end
+  object Button3: TButton
+    Left = 439
+    Top = 524
+    Width = 121
+    Height = 25
+    Caption = 'Mostrar Cinta'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 5
+    OnClick = Button3Click
+  end
+  object Button4: TButton
+    Left = 544
+    Top = 42
+    Width = 75
+    Height = 25
+    Caption = 'Cargar A'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 6
+    OnClick = Button4Click
+  end
+  object CintaV: TStringGrid
+    Left = 53
+    Top = 485
+    Width = 849
+    Height = 33
+    ColCount = 13
+    RowCount = 1
+    FixedRows = 0
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 7
+  end
+  object Button5: TButton
+    Left = 598
+    Top = 524
+    Width = 75
+    Height = 25
+    Caption = 'Derecha'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 8
+    OnClick = Button5Click
+  end
+  object Button6: TButton
+    Left = 274
+    Top = 524
+    Width = 107
+    Height = 25
+    Caption = 'Izquierda'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -16
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 9
+    OnClick = Button6Click
+  end
+  object Simbolomas: TEdit
+    Left = 24
+    Top = 152
+    Width = 75
+    Height = 21
+    TabOrder = 10
+  end
+  object Simbolomenos: TEdit
+    Left = 128
+    Top = 152
+    Width = 75
+    Height = 21
+    TabOrder = 11
+  end
+  object Estadomas: TEdit
+    Left = 247
+    Top = 152
+    Width = 75
+    Height = 21
+    TabOrder = 12
+  end
+  object Estadomenos: TEdit
+    Left = 363
+    Top = 152
+    Width = 75
+    Height = 21
+    TabOrder = 13
+  end
+  object Edit7: TEdit
+    Left = 544
+    Top = 384
+    Width = 121
+    Height = 21
+    TabOrder = 14
+    Text = 'Edit7'
+  end
+  object Button7: TButton
+    Left = 750
+    Top = 524
+    Width = 75
+    Height = 25
+    Caption = 'Paso a Paso'
+    TabOrder = 15
+    OnClick = Button7Click
+  end
+  object Button8: TButton
+    Left = 24
+    Top = 121
+    Width = 75
+    Height = 25
+    Caption = 'Sigma+'
+    TabOrder = 16
+    OnClick = Button8Click
+  end
+  object Button9: TButton
+    Left = 128
+    Top = 121
+    Width = 75
+    Height = 25
+    Caption = 'Sigma-'
+    TabOrder = 17
+    OnClick = Button9Click
+  end
+  object Button10: TButton
+    Left = 247
+    Top = 121
+    Width = 75
+    Height = 25
+    Caption = 'Estado Q+'
+    TabOrder = 18
+    OnClick = Button10Click
+  end
+  object Button11: TButton
+    Left = 363
+    Top = 121
+    Width = 75
+    Height = 25
+    Caption = 'Estado Q-'
+    TabOrder = 19
+    OnClick = Button11Click
+  end
+  object ComboBox1: TComboBox
+    Left = 544
+    Top = 171
+    Width = 37
+    Height = 21
+    TabOrder = 20
+  end
+  object Button12: TButton
+    Left = 544
+    Top = 117
+    Width = 217
+    Height = 25
+    Caption = 'QiSi->Qk,Sk,Mov'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -21
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 21
+    OnClick = Button12Click
+  end
+  object ComboBox2: TComboBox
+    Left = 587
+    Top = 171
+    Width = 41
+    Height = 21
+    TabOrder = 22
+  end
+  object ComboBox3: TComboBox
+    Left = 634
+    Top = 171
+    Width = 39
+    Height = 21
+    TabOrder = 23
+  end
+  object ComboBox4: TComboBox
+    Left = 679
+    Top = 171
+    Width = 38
+    Height = 21
+    TabOrder = 24
+  end
+  object ComboBox5: TComboBox
+    Left = 723
+    Top = 171
+    Width = 38
+    Height = 21
+    TabOrder = 25
+  end
+end

@@ -1,0 +1,35 @@
+//---------------------------------------------------------------------------
+
+#ifndef Unit1H
+#define Unit1H
+//---------------------------------------------------------------------------
+using namespace std;
+class Instruccion{
+	private:
+		char mirar;
+		char conv;
+		char mov;
+		int apuntador;
+		public:
+			   Instruccion();
+			   void operacion(int &cabezal,char* &simb,int &i);
+			   bool sepuede(int cabezal,char* &simbolo,char valornulo);
+			   void set(char mirar1,char conv1,char mov1,int apuntador1);
+
+ };
+
+class Estado{
+private:
+	Instruccion Ins[100];
+	int cantidad;//DeInstrucciones
+	int numeroi;
+public:
+	Estado();
+	void setnumero(int numero);
+	void setInstruccion(char mirar,char conv,char mov,int apuntador);
+	void ejecutar(int &cabezal,char* &simbolo, int &i,char valornulo);
+
+};
+
+
+#endif

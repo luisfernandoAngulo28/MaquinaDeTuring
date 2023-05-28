@@ -1,0 +1,46 @@
+//---------------------------------------------------------------------------
+
+#ifndef UMatrizVH
+#define UMatrizVH
+//---------------------------------------------------------------------------
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+//int MAX_MV = 0;
+/*struct valorS{
+	string dato;
+	int f;
+	int c;
+}; */
+
+class MatrizV {
+private:
+	int* vf;
+	int* vc;
+	char* vd;
+	int df, dc;
+	char repe;
+	int nt;
+
+	int posicion(int f, int c);
+
+public:
+	MatrizV();
+	void dimensionar(int f, int c);
+	int dimension_fila();
+	int dimension_columna();
+	void poner(int f, int c, char valor);
+	char elemento(int f, int c);
+	void definir_valor_repetido(char valor);
+	string to_str();
+	//---------------------------------
+	int ColCount();
+	int RowCount();
+
+	int VerificarRow(int f);
+	int VerificarCol(int c);
+};
+#endif
+

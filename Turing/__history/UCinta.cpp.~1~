@@ -1,0 +1,49 @@
+//---------------------------------------------------------------------------
+
+#pragma hdrstop
+
+#include "UCinta.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+Cinta::Cinta(){
+		char simbolos[max];
+		cabezal=-1;
+		valornulo=' ';
+		for(int i=0; i<max; i++)
+		{
+			v[i]=valornulo;
+		   //	ShowMessage(v[i]);
+		}
+
+}
+void Cinta::crear(TStringGrid *M,String entrada,char valornulo){
+	for(int f=1; f<=numeroDeFila; f++){
+		//for(int c=1; c<=numeroDeColumna; c++ ){
+		if(valornulo!=entrada[0]){
+			M->Cells[0][f]= entrada[0];
+		}
+
+		//}
+	}
+}
+void Cinta::moverDerecha(TStringGrid *M){
+
+}
+void Cinta::moverIzquierda(TStringGrid *M){
+
+}
+void Cinta::imprimir(TStringGrid *M){
+
+}
+int  Cinta::obtenerCabezal(){
+
+}
+char* Cinta::obtenerSimbolo(){
+
+}
+void Cinta::insertar(){
+
+}
+char Cinta::obtenerValorNulo(){
+
+}
